@@ -51,13 +51,10 @@ public class ProximityIterator implements Iterator<Driver> {
 
     public Driver next() {
         if (!hasNext()) {
-            loadNext();
-            if (!hasNext()) {
-                throw new NoSuchElementException();
-            }
+            throw new NoSuchElementException();
         }
-        Driver next = this.nextDriver;
-        loadNext();
+        Driver next = nextDriver;
+        nextDriver = null;
         return next;
     }
     
