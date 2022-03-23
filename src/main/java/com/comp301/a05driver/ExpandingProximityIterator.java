@@ -36,13 +36,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
 
     private void getSize() {
         try {
-            while (true) {
-                if (driverPoolIterator.hasNext()) {
-                    this.size++;
-                } else {
-                    break;
-                }
-            }
+            
         } catch (Exception e) {
             return;
         }
@@ -56,7 +50,6 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
     private void loadNext() {loadNext(0);}
 
     private void loadNext(int iterations) {
-        if (iterations == this.size) {return;}
         Driver next = this.getNext();
         if (next != null) {
             this.nextDriver = next;
