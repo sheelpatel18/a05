@@ -59,6 +59,7 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
 
     @Override
     public boolean hasNext() {
+        if (this.size == 0) {return false;}
         if (nextDriver != null) {
             return true;
         } else {
