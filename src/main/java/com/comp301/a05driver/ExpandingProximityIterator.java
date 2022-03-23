@@ -48,6 +48,8 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
             }
         } catch (Exception e) {
             return;
+        } finally {
+            reset();
         }
     }
 
