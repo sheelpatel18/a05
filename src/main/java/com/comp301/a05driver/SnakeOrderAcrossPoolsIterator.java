@@ -13,7 +13,7 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
     private int size;
     private Integer currentIndex = -1;
     private Direction direction = Direction.FORWARD;
-    private boolean end = false;
+    private boolean repeat = false;
 
 
     public SnakeOrderAcrossPoolsIterator(List<Iterable<Driver>> driverPools) {
@@ -31,13 +31,14 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
         if (currentIndex == 0 && currentIndex == this.size -1) {return;}
         if (this.currentIndex == 0) {
             this.direction = Direction.FORWARD;
-            end = true;
         } else if (this.currentIndex == this.size - 1) {
             this.direction = Direction.BACKWARD;
-            end = true;
         }
-        currentIndex += end ? 0 : this.direction == Direction.FORWARD ? 1 : -1;
-        end = false;
+        if (this.repeat) { this.repeat = false; return;}
+        currentIndex += this.direction == Direction.FORWARD ? 1 : -1;
+        if (this.currentIndex == 0 || this.currentIndex == this.size - 1) {
+            this.repeat = true;
+        }
     }
 
     private void loadNext() {loadNext(0);}
