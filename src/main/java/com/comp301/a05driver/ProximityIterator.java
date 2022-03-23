@@ -1,5 +1,6 @@
 package com.comp301.a05driver;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -50,7 +51,10 @@ public class ProximityIterator implements Iterator<Driver> {
 
     public Driver next() {
         if (!hasNext()) {
-            throw new NoSuchElementException();
+            loadNext();
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
         }
         Driver next = this.nextDriver;
         loadNext();
