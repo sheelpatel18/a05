@@ -17,7 +17,7 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
     
     public SnakeOrderAcrossPoolsIterator(List<Iterable<Driver>> driverPools) {
         if (!(driverPools != null && driverPools.size() > 0)) {
-            throw new IllegalArgumentException("Invalid arguments");
+            //throw new IllegalArgumentException("Invalid arguments");
         }
         this.driverPools = new ArrayList<Iterator<Driver>>();
         for (Iterable<Driver> driverPool : driverPools) {
