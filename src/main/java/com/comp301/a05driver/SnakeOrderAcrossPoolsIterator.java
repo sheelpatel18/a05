@@ -13,8 +13,9 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
     private int size;
     private Integer currentIndex = -1;
     private Direction direction = Direction.FORWARD;
+    private boolean end = false;
 
-    
+
     public SnakeOrderAcrossPoolsIterator(List<Iterable<Driver>> driverPools) {
         if (!(driverPools != null && driverPools.size() > 0)) {
             //throw new IllegalArgumentException("Invalid arguments");
@@ -30,10 +31,13 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
         if (currentIndex == 0 && currentIndex == this.size -1) {return;}
         if (this.currentIndex == 0) {
             this.direction = Direction.FORWARD;
+            end = true;
         } else if (this.currentIndex == this.size - 1) {
             this.direction = Direction.BACKWARD;
+            end = true;
         }
-        currentIndex += this.direction == Direction.FORWARD ? 1 : -1;
+        currentIndex += end ? 0 : this.direction == Direction.FORWARD ? 1 : -1;
+        end = false;
     }
 
     private void loadNext() {loadNext(0);}
