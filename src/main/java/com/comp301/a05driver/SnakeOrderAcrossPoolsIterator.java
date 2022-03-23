@@ -63,7 +63,7 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
         if (nextDriver != null) {
             return true;
         } else {
-            loadNext(1);
+            loadNext(0);
             return nextDriver != null;
         }
     }
