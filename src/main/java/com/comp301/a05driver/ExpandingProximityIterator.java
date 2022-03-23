@@ -31,6 +31,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
         loadNext();
         if (nextDriver == null) { 
             iterate();
+            reset();
             loadNext();
         }
         return nextDriver != null;
@@ -45,6 +46,10 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
         if (next != null) {
             this.nextDriver = next;
         }
+    }
+
+    private void reset() {
+        this.driverPoolIterator = driverPool.iterator();
     }
 
     private Driver getNext() {
