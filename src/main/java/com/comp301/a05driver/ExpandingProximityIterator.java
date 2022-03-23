@@ -63,7 +63,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
         } else {
             reset();
             iterate();
-            loadNext(iterations + 1);
+            //loadNext(iterations + 1);
         }
     }
 
