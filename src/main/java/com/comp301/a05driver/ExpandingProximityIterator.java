@@ -39,9 +39,8 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
     }
 
     private void iterate() {
-        int temp = lowerBound;
-        lowerBound = upperBound;
-        upperBound = temp + expansionStep;
+        this.lowerBound = this.upperBound;
+        this.upperBound += this.expansionStep;
     }
 
     private void loadNext() {
