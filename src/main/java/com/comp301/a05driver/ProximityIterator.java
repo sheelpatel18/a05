@@ -10,6 +10,9 @@ public class ProximityIterator implements Iterator<Driver> {
     private Driver nextDriver;
 
     public ProximityIterator(Iterable<Driver> driverPool, Position clientPosition, int proximityRange) {
+        if (!(driverPool != null && clientPosition != null && proximityRange > 0)) {
+            throw new IllegalArgumentException("Invalid arguments");
+        }
         this.driverPool = driverPool.iterator();
         this.clientPosition = clientPosition;
         this.proximityRange = proximityRange;
