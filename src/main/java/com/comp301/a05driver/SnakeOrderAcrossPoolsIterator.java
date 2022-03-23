@@ -28,6 +28,7 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
     }
 
     private void iterateIndex() {
+        if (currentIndex == 0 && currentIndex == this.size -1) {return;}
         if (switchDirection) {
             if (direction == Direction.FORWARD) {
                 direction = Direction.BACKWARD;
