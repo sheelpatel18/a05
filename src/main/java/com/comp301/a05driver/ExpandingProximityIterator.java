@@ -56,13 +56,14 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
     private void loadNext() {loadNext(0);}
 
     private void loadNext(int iterations) {
+        if (iterations == this.size) {return;}
         Driver next = this.getNext();
         if (next != null) {
             this.nextDriver = next;
         } else {
             reset();
             iterate();
-            if (iterations != size - 1)  {loadNext(iterations + 1);}
+            loadNext(iterations + 1);
         }
     }
 
