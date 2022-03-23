@@ -79,7 +79,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
 
     private Driver getNext(int iterations) {
         try {
-            if (iterations == this.size) {this.exhausted = true; return null;}
+            if (iterations == this.size) {this.exhausted = true;}
             Driver driverPoolNext = driverPoolIterator.next();
             if (driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) <= upperBound && (driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) > lowerBound || driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) == 0)) {
                 return driverPoolNext;
