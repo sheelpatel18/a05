@@ -8,8 +8,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
     Iterator<Driver> driverPoolIterator;
     Position clientPosition;
     int expansionStep;
-    int lowerBound;
-    int upperBound;
+    int currentStep;
     Driver nextDriver;
 
     public ExpandingProximityIterator(Iterable<Driver> driverPool, Position clientPosition, int expansionStep) {
@@ -20,8 +19,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
         this.driverPoolIterator = driverPool.iterator();
         this.clientPosition = clientPosition;
         this.expansionStep = expansionStep;
-        this.lowerBound = 0;
-        this.upperBound = 1;
+        this.currentStep = 0;
         this.nextDriver = null;
     }
 
@@ -39,8 +37,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
     }
 
     private void iterate() {
-        this.lowerBound = this.upperBound;
-        this.upperBound += this.expansionStep;
+        this.currentStep++;
     }
 
     private void loadNext() {
@@ -53,7 +50,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
     private Driver getNext() {
         try {
             Driver driverPoolNext = driverPoolIterator.next();
-            if (driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) <= upperBound && driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) >= lowerBound) {
+            if (driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) <= 1 + currentStep * expansionStep && driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) >= 1 + expansionStep) {
                 return driverPoolNext;
             } else {
                 return getNext();
