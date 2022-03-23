@@ -12,6 +12,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
     int upperBound;
     Driver nextDriver;
     int size;
+    boolean exhausted = false;
 
     public ExpandingProximityIterator(Iterable<Driver> driverPool, Position clientPosition, int expansionStep) {
         if (!(driverPool != null && clientPosition != null && expansionStep > 0)) {
@@ -58,6 +59,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
     private void loadNext() {loadNext(0);}
 
     private void loadNext(int iterations) {
+        if (this.exhausted) {return;}
         Driver next = this.getNext();
         if (next != null) {
             this.nextDriver = next;
@@ -76,7 +78,7 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
 
     private Driver getNext(int iterations) {
         try {
-            if (iterations == this.size) {return null;}
+            if (iterations == this.size) {this.exhausted = true; return null;}
             Driver driverPoolNext = driverPoolIterator.next();
             if (driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) < upperBound && driverPoolNext.getVehicle().getPosition().getManhattanDistanceTo(clientPosition) >= lowerBound) {
                 return driverPoolNext;
