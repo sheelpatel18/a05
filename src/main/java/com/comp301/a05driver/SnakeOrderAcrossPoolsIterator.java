@@ -38,7 +38,7 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
     private void loadNext() {loadNext(0);}
 
     private void loadNext(int iterationCount) {
-        if (iterationCount == this.size) {
+        if (iterationCount == this.size*2) {
             this.nextDriver = null;
             return;
         }
