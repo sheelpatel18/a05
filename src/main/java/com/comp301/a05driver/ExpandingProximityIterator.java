@@ -21,6 +21,8 @@ public class ExpandingProximityIterator implements Iterator<Driver> {
         this.driverPoolIterator = driverPool.iterator();
         this.clientPosition = clientPosition;
         this.expansionStep = expansionStep;
+        this.lowerBound = 0;
+        this.upperBound = 1;
         this.nextDriver = null;
         getSize();
     }
