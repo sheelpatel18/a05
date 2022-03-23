@@ -32,7 +32,7 @@ public class SnakeOrderAcrossPoolsIterator implements Iterator<Driver> {
         } else if (this.currentIndex == this.size - 1) {
             this.direction = Direction.BACKWARD;
         }
-        currentIndex += direction == Direction.FORWARD ? 1 : -1;
+        currentIndex += this.direction == Direction.FORWARD ? 1 : -1;
     }
 
     private void loadNext() {loadNext(0);}
